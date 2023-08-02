@@ -9,15 +9,14 @@
 3. Computationally efficient, low memory usage
 4. Adapt different kinds of LiDARs (multi-spinning LiDARs and non-conventional solid-state LiDARs)
 
+<div align="center">
+    <img src="pics/VoxelMap++.png" width = 100% >
+    <font color=#a0a0a0 size=2>The framework about VoxelMap++</font>
+</div>
+
 ### Developers:
 [Yuan You 游远](https://github.com/SunnysTaste)， [Yifei Yuan 袁翼飞](https://github.com/YYF)
 
-### Related video
-Our accompanying videos are now available on **bilibili**.
-<div align="center">
-    <a href="https://www.bilibili.com/XXXXX" target="_blank">
-    <img src="pics/VoxelMap++.png" width=60% />
-</div>
 
 
 ### Related paper
