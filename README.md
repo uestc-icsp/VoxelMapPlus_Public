@@ -10,7 +10,7 @@
 4. Adapt different kinds of LiDARs (multi-spinning LiDARs and non-conventional solid-state LiDARs)
 
 <div align="center">
-    <img src="pics/VoxelMap++.png" width = 100% >
+    <img src="pics/Voxelmap++.png" width = 100% >
     <font color=#a0a0a0 size=2>The framework about VoxelMap++</font>
 </div>
 
