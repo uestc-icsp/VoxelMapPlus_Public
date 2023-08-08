@@ -27,7 +27,7 @@ Our accompanying videos are now available on **Bilibili**.
 
 ### Related paper
 Related paper available on **arxiv**:  
-1. [Voxelmap++: Mergeable Voxel Mapping Method for Online LiDAR(-inertial) Odometry](https://arxiv.org/abs/XXXXXX)(Not yet uploaded)
+1. [Voxelmap++: Mergeable Voxel Mapping Method for Online LiDAR(-inertial) Odometry](https://arxiv.org/pdf/2308.02799.pdf)
 2. [Efficient and Probabilistic Adaptive Voxel Mapping for Accurate Online LiDAR Odometry](https://arxiv.org/abs/2109.07082)
 3. [FAST-LIO2: Fast Direct LiDAR-inertial Odometry](https://arxiv.org/abs/2107.06829)
 
