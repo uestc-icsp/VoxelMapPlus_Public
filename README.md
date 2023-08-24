@@ -52,8 +52,8 @@ Clone the repository and catkin_make:
 ```
 - Remember to source the livox_ros_driver before build (follow 1.2 **livox_ros_driver**)
 
-## 4. Run on Dataset
-### 4.1 Run on Our LivoxHap Odometry dataset
+## 3. Run on Dataset
+### 3.1 Run on Our LivoxHap Odometry dataset
 Step A: Download Datasets
 
 Step B: Setup before run
