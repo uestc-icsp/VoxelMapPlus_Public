@@ -10,18 +10,24 @@
 4. Adapt different kinds of LiDARs (multi-spinning LiDARs and non-conventional solid-state LiDARs)
 
 <div align="center">
-    <img src="pics/VoxelMap++.png" width = 100% >
+    <img src="pics/Voxelmap++.png" width = 100% >
     <font color=#a0a0a0 size=2>The framework about VoxelMap++</font>
 </div>
 
 ### Developers:
 [Yuan You 游远](https://github.com/SunnysTaste)， [Yifei Yuan 袁翼飞](https://github.com/YYF)
 
+### Related video
+Our accompanying videos are now available on **Bilibili**.
+<div align="center">
+    <a href="https://www.bilibili.com/video/BV16h4y1r7Cm/" target="_blank">
+    <img src="pics/video_cover.png" width=100% />
+</div>
 
 
 ### Related paper
 Related paper available on **arxiv**:  
-1. [Voxelmap++: Mergeable Voxel Mapping Method for Online LiDAR(-inertial) Odometry](https://arxiv.org/abs/XXXXXX)
+1. [Voxelmap++: Mergeable Voxel Mapping Method for Online LiDAR(-inertial) Odometry](https://arxiv.org/pdf/2308.02799.pdf)
 2. [Efficient and Probabilistic Adaptive Voxel Mapping for Accurate Online LiDAR Odometry](https://arxiv.org/abs/2109.07082)
 3. [FAST-LIO2: Fast Direct LiDAR-inertial Odometry](https://arxiv.org/abs/2107.06829)
 
