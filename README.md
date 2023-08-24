@@ -68,7 +68,7 @@ Step C: Run below
 ```
     cd ~/$VOXEL_MAP_PLUS_ROS_DIR$
     source devel/setup.bash
-    roslaunch voxel_map mapping_velodyne.launch
+    roslaunch voxel_map_plus mapping_velodyne.launch
 ```
 
 Step D: Play rosbag.
