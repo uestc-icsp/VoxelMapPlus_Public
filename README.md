@@ -55,12 +55,14 @@ Clone the repository and catkin_make:
 ## 3. Run on Dataset
 ### 3.1 Run on Our LivoxHap Odometry dataset
 Step A: Download Datasets
+链接: https://pan.baidu.com/s/1-FXY-UDdfJ0O4S-IWwFBqg?pwd=ICSP 提取码: ICSP 
 
 Step B: Setup before run
 Edit ``` config/velodyne.yaml ``` to set the below parameters:
 1. LiDAR point cloud topic name: ``` lid_topic ```
-2. If you want to show the voxel map, set ```pub_voxel_map``` to ```true```
-3. If you want to show the accumulated point cloud map, set ```pub_point_cloud``` to ```true```
+2. IMU topic name: ``` imu_topic ```
+3. If you want to show the voxel map, set ```pub_voxel_map``` to ```true```
+4. If you want to show the accumulated point cloud map, set ```pub_point_cloud``` to ```true```
 
 Step C: Run below
 ```
