@@ -1,0 +1,9 @@
+---
+Language:        Cpp
+BasedOnStyle:  Google
+ColumnLimit:     100
+SortIncludes:    false
+IndentWidth:     4
+ReflowComments:  true
+Standard:        Auto
+IncludeBlocks:   Preserve
