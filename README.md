@@ -12,6 +12,10 @@
 <div align="center">
     <img src="pics/Voxelmap++.png" width = 100% >
     <font color=#a0a0a0 size=2>The framework about VoxelMap++</font>
+    <img src="pics/MergedVoxelMap.png" width = 100% >
+    <font color=#a0a0a0 size=2>The Merged VoxelMap about Liren Building</font>
+    <img src="pics/PointCloudMap.png" width = 100% >
+    <font color=#a0a0a0 size=2>The PointCloud Map about Liren Building</font>
 </div>
 
 ### Developers:

@@ -718,13 +718,6 @@ void BuildResidualListOMP(const unordered_map<VOXEL_LOC, UnionFindNode *> &voxel
 }
 
 /*** Visualization Function ***/
-void GetUpdatePlane(const UnionFindNode *current_octo, std::vector<Plane> &plane_list) {
-    if (current_octo->all_points_num_ >= 100) {
-        plane_list.push_back(*current_octo->plane_ptr_);
-    }
-}
-
-/*** Visualization Function ***/
 void CalcVectQuaternion(const Plane &single_plane, geometry_msgs::Quaternion &q) {
     //int main_direction = 0; //0:ax+by+z+d=0;  1:ax+y+bz+d=0;  2:x+ay+bz+d=0;
     double a = 0.0;
@@ -797,10 +790,8 @@ void pubSinglePlane(visualization_msgs::MarkerArray &plane_pub,
 /*** Visualization Function ***/
 void pubVoxelMap(const std::unordered_map<VOXEL_LOC, UnionFindNode *> &voxel_map,
                  const ros::Publisher &plane_map_pub) {
-    double max_trace = 0.25;
-    double pow_num = 0.2;
     ros::Rate loop(500);
-    float use_alpha = 0.8;
+    float use_alpha = 1;
     visualization_msgs::MarkerArray voxel_plane;
     voxel_plane.markers.reserve(1000000);
     std::vector<UnionFindNode *> pub_node_list;
