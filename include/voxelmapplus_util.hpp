@@ -75,11 +75,6 @@ typedef struct Plane {
     Eigen::Matrix3d covariance = M3D::Zero();
     int points_size = 0;
 
-    /*** Visualization ***/
-    int id = 0;
-    float min_eigen_value = 1;
-    float mid_eigen_value = 1;
-    float max_eigen_value = 1;
 } Plane;
 typedef std::shared_ptr<Plane> PlanePtr;
 typedef const std::shared_ptr<Plane> PlaneConstPtr;
@@ -119,7 +114,7 @@ public:
     bool init_node_;
     bool update_enable_;
     bool is_plane;
-    int node_id;
+    int id;
     UnionFindNode *rootNode;
 
     UnionFindNode(){
@@ -179,9 +174,6 @@ public:
         evalsReal.rowwise().sum().maxCoeff(&evalsMax);
         int evalsMid = static_cast<int>(3 - evalsMin - evalsMax);
         V3D evecMin = evecs.real().col(evalsMin);
-        plane->min_eigen_value = static_cast<float>(evalsReal(evalsMin));
-        plane->mid_eigen_value = static_cast<float>(evalsReal(evalsMid));
-        plane->max_eigen_value = static_cast<float>(evalsReal(evalsMax));
 
         /*** Definition ***/
         plane->plane_cov = M3D::Zero();
@@ -301,15 +293,13 @@ public:
             plane->is_plane = true;
             node->is_plane = true;
             if (!plane->is_init) {
-                plane->id = plane_id;
-                node->node_id = plane_id;
+                node->id = plane_id;
                 plane_id++;
                 plane->is_init = true;
             }
         } else {//is not plane
             if (!plane->is_init) {
-                plane->id = plane_id;
-                node->node_id = plane_id;
+                node->id = plane_id;
                 plane_id++;
                 plane->is_init = true;
             }
@@ -771,12 +761,12 @@ void CalcVectQuaternion(const Plane &single_plane, geometry_msgs::Quaternion &q)
 /*** Visualization Function ***/
 void pubSinglePlane(visualization_msgs::MarkerArray &plane_pub,
                     const std::string& plane_ns, const Plane &single_plane,
-                    const float alpha, const V3D& rgb) {
+                    const float alpha, const V3D& rgb, int id) {
     visualization_msgs::Marker plane;
     plane.header.frame_id = "camera_init";
     plane.header.stamp = ros::Time();
     plane.ns = plane_ns;
-    plane.id = single_plane.id;
+    plane.id = id;
     // todo: change Type
     if (single_plane.isRootPlane) {
         plane.type = visualization_msgs::Marker::CYLINDER;
@@ -796,9 +786,6 @@ void pubSinglePlane(visualization_msgs::MarkerArray &plane_pub,
     plane.scale.x = 0.45;
     plane.scale.y = 0.45;
     plane.scale.z = 0.01;
-    // plane.scale.x = 3 * sqrt(single_plane.max_eigen_value);
-    // plane.scale.y = 3 * sqrt(single_plane.mid_eigen_value);
-    // plane.scale.z = 2 * sqrt(single_plane.min_eigen_value);
     plane.color.a = alpha;
     plane.color.r = static_cast<float>(rgb(0));
     plane.color.g = static_cast<float>(rgb(1));
@@ -806,58 +793,6 @@ void pubSinglePlane(visualization_msgs::MarkerArray &plane_pub,
     plane.lifetime = ros::Duration();
     plane_pub.markers.push_back(plane);
 }
-
-//void pubVoxelMap(const std::unordered_map<VOXEL_LOC, UnionFindNode *> &voxel_map,
-//                 const ros::Publisher &plane_map_pub) {
-//    ros::Rate loop(500);
-//    float use_alpha = 0.8;
-//    visualization_msgs::MarkerArray voxel_plane;
-//    voxel_plane.markers.reserve(1000000);
-//    std::vector<UnionFindNode *> pub_node_list;
-//    for (const auto & iter : voxel_map) {
-//        // 可以可视化
-//        if (!iter.second->update_enable_) {
-//            pub_node_list.emplace_back(iter.second);
-//        }
-//    }
-//    for (auto & node : pub_node_list) {
-//        UnionFindNode* curRootNode = node;
-//        while(curRootNode->rootNode != curRootNode){
-//            curRootNode = curRootNode->rootNode;
-//        }
-//
-//        V3D plane_rgb(curRootNode->plane_ptr_->rgb[0] / 256.0,
-//                      curRootNode->plane_ptr_->rgb[1] / 256.0,
-//                      curRootNode->plane_ptr_->rgb[2] / 256.0);
-//        cout << "plane_rgb:" << plane_rgb.transpose() << endl;
-//        float alpha;
-//        if (curRootNode->is_plane) {
-//            alpha = use_alpha;
-//
-//            Plane newP;
-//            if(node == curRootNode) {
-//                newP.isRootPlane = true;
-//            }else{
-//                newP.isRootPlane = false;
-//            }
-//            newP.id = curRootNode->plane_ptr_->id;
-//            newP.center[0] = node->voxel_center_[0];
-//            newP.center[1] = node->voxel_center_[1];
-//            newP.center[2] = node->voxel_center_[2];
-//            newP.n_vec = curRootNode->plane_ptr_->n_vec;
-//            newP.main_direction = curRootNode->plane_ptr_->main_direction;
-//            newP.max_eigen_value = curRootNode->plane_ptr_->max_eigen_value;
-//            newP.mid_eigen_value = curRootNode->plane_ptr_->mid_eigen_value;
-//            newP.min_eigen_value = curRootNode->plane_ptr_->min_eigen_value;
-//            pubSinglePlane(voxel_plane, "plane", newP, alpha, plane_rgb);
-//        } else {
-//            alpha = 0;
-//        }
-//    }
-//    std::cout << "voxel_plane size:" << voxel_plane.markers.size() << std::endl;
-//    plane_map_pub.publish(voxel_plane);
-//    loop.sleep();
-//}
 
 /*** Visualization Function ***/
 void pubVoxelMap(const std::unordered_map<VOXEL_LOC, UnionFindNode *> &voxel_map,
@@ -888,23 +823,17 @@ void pubVoxelMap(const std::unordered_map<VOXEL_LOC, UnionFindNode *> &voxel_map
             alpha = use_alpha;
 
             Plane newP;
-            newP.id = node->node_id;
             if(node == curRootNode) {
                 newP.isRootPlane = true;
             }else{
                 newP.isRootPlane = false;
             }
-
+            newP.n_vec = curRootNode->plane_ptr_->n_vec;
             newP.center[0] = node->voxel_center_[0];
             newP.center[1] = node->voxel_center_[1];
             newP.center[2] = node->voxel_center_[2];
-
             newP.main_direction = curRootNode->plane_ptr_->main_direction;
-            newP.max_eigen_value = curRootNode->plane_ptr_->max_eigen_value;
-            newP.mid_eigen_value = curRootNode->plane_ptr_->mid_eigen_value;
-            newP.min_eigen_value = curRootNode->plane_ptr_->min_eigen_value;
-
-            pubSinglePlane(voxel_plane, "plane", newP, alpha, plane_rgb);
+            pubSinglePlane(voxel_plane, "plane", newP, alpha, plane_rgb, node->id);
         } else {
             alpha = 0;
         }
