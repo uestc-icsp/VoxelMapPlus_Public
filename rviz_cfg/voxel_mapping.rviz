@@ -17,6 +17,7 @@ Panels:
         - /Axes2
         - /Path1
         - /PointCloud21
+        - /MarkerArray2
       Splitter Ratio: 0.520588219165802
     Tree Height: 645
   - Class: rviz/Selection
@@ -277,13 +278,13 @@ Visualization Manager:
       Unreliable: false
       Value: false
     - Class: rviz/MarkerArray
-      Enabled: false
+      Enabled: true
       Marker Topic: /planes
       Name: MarkerArray
       Namespaces:
-        {}
-      Queue Size: 100
-      Value: false
+        plane: true
+      Queue Size: 1000
+      Value: true
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
@@ -340,25 +341,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 20.03380012512207
+      Distance: 69.06742858886719
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 64.76839447021484
-        Y: 1.2003101110458374
-        Z: 18.791263580322266
+        X: 6.149130821228027
+        Y: -2.7344322204589844
+        Z: -21.636234283447266
       Focal Shape Fixed Size: false
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 1.2903985977172852
-      Target Frame: camera_init
+      Pitch: 0.8097971677780151
+      Target Frame: aft_mapped
       Value: Orbit (rviz)
-      Yaw: 3.165402412414551
+      Yaw: 0.09541264176368713
     Saved:
       - Class: rviz/Orbit
         Distance: 310.7291564941406
