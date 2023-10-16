@@ -19,7 +19,7 @@
 </div>
 
 ### Developers:
-[Yuan You 游远](https://github.com/SunnysTaste)， [Yifei Yuan 袁翼飞](https://github.com/YYF)
+[Yuan You 游远](https://github.com/SunnysTaste)， Yifei Yuan 袁翼飞
 
 ### Related video
 Our accompanying videos are now available on **Bilibili**.
